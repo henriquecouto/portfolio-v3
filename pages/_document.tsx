@@ -9,6 +9,8 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
+          <link href="/fonts/BebasNeue/stylesheet.css" rel="stylesheet" />
+          <link href="/fonts/Roboto/stylesheet.css" rel="stylesheet" />
         </Head>
         <body>
           <Main />
