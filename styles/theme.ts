@@ -16,6 +16,17 @@ const theme = createMuiTheme({
     background: {
       default: "#fff",
     },
+    text: {
+      primary: "#212141",
+      secondary: "#3b2ec5",
+      hint: "#fff",
+    },
+  },
+  typography: {
+    button: {
+      fontSize: 16,
+      fontWeight: 700,
+    },
   },
 });
 

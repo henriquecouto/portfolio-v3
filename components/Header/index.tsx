@@ -1,0 +1,53 @@
+import React from "react";
+import { AppBar, Box, Container, Grid, Toolbar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { transparentize } from "polished";
+import ElevationScroll from "./ElevationScroll";
+import Button from "../Button";
+
+const appBarHeight = 100;
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    backgroundColor: transparentize(0.6, theme.palette.secondary.main),
+    minHeight: appBarHeight,
+    backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
+    padding: 0,
+  },
+  toolbar: {
+    minHeight: appBarHeight,
+    padding: 0,
+  },
+}));
+
+const Header: React.FC = (props) => {
+  const classes = useStyles();
+  return (
+    <>
+      <ElevationScroll {...props}>
+        <AppBar className={classes.appBar} position="sticky">
+          <Toolbar className={classes.toolbar}>
+            <Container maxWidth="xl">
+              <Grid container alignItems="center" justify="space-between">
+                <img src="/logo.svg" />
+                <div>
+                  <Button color="primary">Início</Button>
+                  <Button color="primary">Portfólio</Button>
+                  <Button color="primary">Habilidades</Button>
+                  <Button color="primary">Contato</Button>
+                </div>
+                <Button color="primary" variant="contained">
+                  Blog
+                </Button>
+              </Grid>
+            </Container>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+      <Container>{props.children}</Container>
+    </>
+  );
+};
+
+export default Header;
