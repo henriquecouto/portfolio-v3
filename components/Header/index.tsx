@@ -1,7 +1,17 @@
 import React from "react";
-import { AppBar, Box, Container, Grid, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  Box,
+  Container,
+  Grid,
+  Hidden,
+  Toolbar,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { transparentize } from "polished";
+import Icon from "@iconify/react";
+import menu from "@iconify/icons-jam/menu";
+
 import ElevationScroll from "./ElevationScroll";
 import Button from "../Button";
 
@@ -19,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: appBarHeight,
     padding: 0,
   },
+  iconButton: {
+    fontSize: 28,
+  },
 }));
 
 const Header: React.FC = (props) => {
@@ -31,15 +44,22 @@ const Header: React.FC = (props) => {
             <Container maxWidth="xl">
               <Grid container alignItems="center" justify="space-between">
                 <img src="/logo.svg" />
-                <div>
-                  <Button color="primary">Início</Button>
-                  <Button color="primary">Portfólio</Button>
-                  <Button color="primary">Habilidades</Button>
-                  <Button color="primary">Contato</Button>
-                </div>
-                <Button color="primary" variant="contained">
-                  Blog
-                </Button>
+                <Hidden smDown>
+                  <div>
+                    <Button color="primary">Início</Button>
+                    <Button color="primary">Portfólio</Button>
+                    <Button color="primary">Habilidades</Button>
+                    <Button color="primary">Contato</Button>
+                  </div>
+                  <Button color="primary" variant="contained">
+                    Blog
+                  </Button>
+                </Hidden>
+                <Hidden mdUp>
+                  <Button color="primary" variant="contained">
+                    <Icon icon={menu} className={classes.iconButton} />
+                  </Button>
+                </Hidden>
               </Grid>
             </Container>
           </Toolbar>
