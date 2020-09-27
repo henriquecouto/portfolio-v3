@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Button: React.FC<ButtonProps> = (props) => {
   const classes = useStyles();
-  return <MuiButton {...props} className={classes.root} />;
+  return <MuiButton className={classes.root} {...props} />;
 };
 
 export default Button;

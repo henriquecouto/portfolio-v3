@@ -9,11 +9,10 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { transparentize } from "polished";
-import Icon from "@iconify/react";
-import menu from "@iconify/icons-jam/menu";
 
 import ElevationScroll from "./ElevationScroll";
 import Button from "../Button";
+import Drawer from "./Drawer";
 
 const appBarHeight = 100;
 
@@ -31,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: appBarHeight,
     padding: 0,
   },
-  iconButton: {
-    fontSize: 28,
+  drawerButton: {
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -58,9 +57,43 @@ const Header: React.FC = (props) => {
                   </Button>
                 </Hidden>
                 <Hidden mdUp>
-                  <Button color="primary" variant="contained">
-                    <Icon icon={menu} className={classes.iconButton} />
-                  </Button>
+                  <Drawer appBarHeight={appBarHeight}>
+                    <Button
+                      fullWidth
+                      className={classes.drawerButton}
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Início
+                    </Button>
+                    <Button
+                      fullWidth
+                      className={classes.drawerButton}
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Portfólio
+                    </Button>
+                    <Button
+                      fullWidth
+                      className={classes.drawerButton}
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Habilidades
+                    </Button>
+                    <Button
+                      fullWidth
+                      className={classes.drawerButton}
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Contato
+                    </Button>
+                    <Button fullWidth color="primary" variant="contained">
+                      Blog
+                    </Button>
+                  </Drawer>
                 </Hidden>
               </Grid>
             </Container>
