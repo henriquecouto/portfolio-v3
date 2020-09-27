@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: appBarHeight,
     backdropFilter: "blur(8px)",
     WebkitBackdropFilter: "blur(8px)",
-    padding: 0,
+    margin: theme.spacing(2),
+    width: `calc(100% - ${theme.spacing(4)}px)`,
+    borderRadius: theme.spacing(1),
   },
   toolbar: {
     minHeight: appBarHeight,

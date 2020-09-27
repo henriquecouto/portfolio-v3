@@ -9,6 +9,7 @@ export default function Home() {
           display: "flex",
           justifyContent: "space-between",
           flexDirection: "column",
+          border: "#212121 solid",
         }}
       >
         <p>
