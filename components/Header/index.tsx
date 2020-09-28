@@ -1,18 +1,21 @@
 import React from "react";
 import {
   AppBar,
-  Box,
   Container,
+  Fab,
   Grid,
   Hidden,
   Toolbar,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { transparentize } from "polished";
+import Icon from "@iconify/react";
+import arrowUp from "@iconify/icons-jam/arrow-up";
 
 import ElevationScroll from "./ElevationScroll";
 import Button from "../Button";
 import Drawer from "./Drawer";
+import BackToTop from "./BackToTop";
 
 const appBarHeight = 100;
 
@@ -39,6 +42,7 @@ const Header: React.FC = (props) => {
   const classes = useStyles();
   return (
     <>
+      <div id="back-to-top-anchor" />
       <ElevationScroll {...props}>
         <AppBar className={classes.appBar} position="sticky">
           <Toolbar className={classes.toolbar}>
@@ -101,6 +105,7 @@ const Header: React.FC = (props) => {
         </AppBar>
       </ElevationScroll>
       <Container>{props.children}</Container>
+      <BackToTop />
     </>
   );
 };
