@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AppBar,
+  Box,
   Container,
   Fab,
   Grid,
@@ -104,7 +105,7 @@ const Header: React.FC = (props) => {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <Container>{props.children}</Container>
+      <Box>{props.children}</Box>
       <BackToTop />
     </>
   );

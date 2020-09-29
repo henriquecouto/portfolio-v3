@@ -29,6 +29,7 @@ const theme = createMuiTheme({
     },
     h1: {
       fontFamily: "Bebas Neue",
+      lineHeight: 1,
     },
     h2: {
       fontFamily: "Bebas Neue",
@@ -43,6 +44,10 @@ const theme = createMuiTheme({
     h4: {
       fontFamily: "Bebas Neue",
       fontSize: 27,
+    },
+    subtitle1: {
+      fontSize: 24,
+      lineHeight: 2,
     },
     body1: {
       fontSize: 19,
