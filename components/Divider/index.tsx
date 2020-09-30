@@ -3,6 +3,9 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
+  default: {
+    backgroundColor: theme.palette.primary.main,
+  },
   primary: {
     backgroundColor: theme.palette.primary.dark,
   },
@@ -19,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type Props = {
   height?: "small" | "high";
-  background?: "primary" | "secondary";
+  background?: "default" | "primary" | "secondary";
 };
 
 const Divider = (props: DividerProps & Props) => {
@@ -31,7 +34,8 @@ const Divider = (props: DividerProps & Props) => {
       className={clsx({
         [classes.small]: height === "small",
         [classes.high]: height === "high" || height === undefined,
-        [classes.primary]: background === "primary" || background === undefined,
+        [classes.default]: background === "default" || background === undefined,
+        [classes.primary]: background === "primary",
         [classes.secondary]: background === "secondary",
       })}
     />
