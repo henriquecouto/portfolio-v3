@@ -1,17 +1,17 @@
 import { Typography } from "@material-ui/core";
 import Header from "../components/Header";
 import Portfolio from "../components/Home/Portfolio";
+import Skills from "../components/Home/Skills";
 import Top from "../components/Home/Top";
 import Section from "../components/Section";
+import Work from "../types/Work";
 
-export default function Home({ works }) {
+export default function Home({ works, skills }) {
   return (
     <Header>
       <Top />
       <Portfolio works={works} />
-      <Section title="Habilidades" color="secondary">
-        <Typography>Hihi</Typography>
-      </Section>
+      <Skills skills={skills} />
       <Section title="Contato" color="primary">
         <Typography>Hoho</Typography>
       </Section>
@@ -22,9 +22,14 @@ export default function Home({ works }) {
   );
 }
 
-Home.getInitialProps = async (ctx) => {
+Home.getInitialProps = async () => {
   const works = await (
     await fetch(process.env.LOCAL_URL + "/api/works")
   ).json();
-  return { works };
+
+  const skills = await (
+    await fetch(process.env.LOCAL_URL + "/api/skills")
+  ).json();
+
+  return { works, skills };
 };
