@@ -1,10 +1,10 @@
 import { Typography } from "@material-ui/core";
 import Header from "../components/Header";
+import Contact from "../components/Home/Contact";
 import Portfolio from "../components/Home/Portfolio";
 import Skills from "../components/Home/Skills";
 import Top from "../components/Home/Top";
 import Section from "../components/Section";
-import Work from "../types/Work";
 
 export default function Home({ works, skills }) {
   return (
@@ -12,9 +12,7 @@ export default function Home({ works, skills }) {
       <Top />
       <Portfolio works={works} />
       <Skills skills={skills} />
-      <Section title="Contato" color="primary">
-        <Typography>Hoho</Typography>
-      </Section>
+      <Contact />
       <Section title="Blog" color="secondary">
         <Typography>Huhu</Typography>
       </Section>
