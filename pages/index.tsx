@@ -12,10 +12,10 @@ export default function Home({ works, skills }) {
       <Top />
       <Portfolio works={works} />
       <Skills skills={skills} />
-      <Contact />
-      <Section title="Blog" color="secondary">
+      <Section title="Blog" color="primary">
         <Typography>Huhu</Typography>
       </Section>
+      <Contact />
     </Header>
   );
 }
