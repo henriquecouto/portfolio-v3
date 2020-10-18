@@ -62,7 +62,7 @@ const Skills: React.FC<Props> = ({ skills }) => {
       <Grid container spacing={2} direction="column" alignItems="center">
         {skills.map((skill, index) => {
           return (
-            <Grid item>
+            <Grid item key={skill.id}>
               <SkillItem skill={skill} index={index} />
             </Grid>
           );
