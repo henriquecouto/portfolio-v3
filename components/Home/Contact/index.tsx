@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
   const sendMessage = async (event: FormEvent) => {
     event.preventDefault();
 
-    let pass = false;
+    let pass = true;
 
     if (!name || nameError) {
       enqueueSnackbar("Poderia informar o seu nome? 😕", { variant: "error" });
@@ -104,13 +104,19 @@ const Contact: React.FC = () => {
       return false;
     }
 
-    const res = await (
-      await fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify({ a: "hehe" }),
-      })
-    ).json();
-    console.log(res);
+    fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify({
+        senderName: name,
+        senderEmail: email,
+        content: message,
+      }),
+    });
+
+    enqueueSnackbar("Mensagem enviada! 😁", { variant: "success" });
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (

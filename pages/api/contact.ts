@@ -24,7 +24,7 @@ class Message {
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const message = new Message(req.body);
+  const message = new Message(JSON.parse(req.body));
 
   let mailOptions = {
     from: '"Contato Portfólio" <contato@henriquecouto.com.br>',
