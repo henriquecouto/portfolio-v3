@@ -1,20 +1,17 @@
-import { Typography } from "@material-ui/core";
 import Header from "../components/Header";
+import Blog from "../components/Home/Blog";
 import Contact from "../components/Home/Contact";
 import Portfolio from "../components/Home/Portfolio";
 import Skills from "../components/Home/Skills";
 import Top from "../components/Home/Top";
-import Section from "../components/Section";
 
-export default function Home({ works, skills }) {
+export default function Home({ works, skills, lastPost }) {
   return (
     <Header>
       <Top />
       <Portfolio works={works} />
       <Skills skills={skills} />
-      <Section title="Blog" color="primary">
-        <Typography>Huhu</Typography>
-      </Section>
+      <Blog lastPost={lastPost} />
       <Contact />
     </Header>
   );
@@ -29,5 +26,9 @@ Home.getInitialProps = async () => {
     await fetch(process.env.LOCAL_URL + "/api/skills")
   ).json();
 
-  return { works, skills };
+  const lastPost = await (
+    await fetch(process.env.LOCAL_URL + "/api/blog")
+  ).json();
+
+  return { works, skills, lastPost };
 };

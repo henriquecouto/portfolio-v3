@@ -7,9 +7,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const posts: Array<Post> = await db
     .collection("blog")
     .find()
-    .limit(3)
+    .sort({ id: -1 })
+    .limit(1)
     .toArray();
-  res.status(200).json(posts);
+  res.status(200).json(posts[0]);
 };
 
 export default handler;
