@@ -39,7 +39,7 @@ type Props = {
 const Portfolio: React.FC<Props> = ({ works }) => {
   const classes = useStyles();
   return (
-    <Section title="Portfólio" color="primary">
+    <Section title="Portfólio" color="primary" id="portfolio">
       <>
         <Grid
           container

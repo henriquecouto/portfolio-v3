@@ -58,7 +58,7 @@ const SkillItem: React.FC<{ skill: Skill; index?: number }> = ({
 
 const Skills: React.FC<Props> = ({ skills }) => {
   return (
-    <Section title="Habilidades" color="secondary">
+    <Section title="Habilidades" color="secondary" id="skills">
       <Grid container spacing={2} direction="column" alignItems="center">
         {skills.map((skill, index) => {
           return (

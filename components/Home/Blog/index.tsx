@@ -77,7 +77,7 @@ const Blog: React.FC<Props> = ({ lastPost }) => {
   const classes = useBlogStyles();
 
   return (
-    <Section title="Blog" color="primary">
+    <Section title="Blog" color="primary" id="blog">
       <Grid
         container
         direction="column"

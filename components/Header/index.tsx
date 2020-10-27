@@ -41,6 +41,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Header: React.FC = (props) => {
   const classes = useStyles();
+
+  const handleClick = (selector: string) => (
+    event: React.MouseEvent<
+      HTMLDivElement & HTMLButtonElement & HTMLButtonElement
+    >
+  ) => {
+    const anchor = (
+      (event.target as HTMLDivElement).ownerDocument || document
+    ).querySelector(selector);
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <>
       <div id="back-to-top-anchor" />
@@ -52,12 +67,27 @@ const Header: React.FC = (props) => {
                 <img src="/logo.svg" />
                 <Hidden smDown>
                   <div>
-                    <Button color="primary">Início</Button>
-                    <Button color="primary">Portfólio</Button>
-                    <Button color="primary">Habilidades</Button>
-                    <Button color="primary">Contato</Button>
+                    <Button
+                      color="primary"
+                      onClick={handleClick("#back-to-top-anchor")}
+                    >
+                      Início
+                    </Button>
+                    <Button color="primary" onClick={handleClick("#portfolio")}>
+                      Portfólio
+                    </Button>
+                    <Button color="primary" onClick={handleClick("#skills")}>
+                      Habilidades
+                    </Button>
+                    <Button color="primary" onClick={handleClick("#contact")}>
+                      Contato
+                    </Button>
                   </div>
-                  <Button color="primary" variant="contained">
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={handleClick("#blog")}
+                  >
                     Blog
                   </Button>
                 </Hidden>

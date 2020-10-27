@@ -20,14 +20,15 @@ type Props = {
   children?: React.ReactElement;
   color: "primary" | "secondary";
   title: string;
+  id: string;
 };
 
-const Section: React.FC<Props> = ({ children, color, title }) => {
+const Section: React.FC<Props> = ({ children, color, title, id }) => {
   const classes = useStyles();
   const dividerColor = color === "primary" ? "secondary" : "primary";
 
   return (
-    <section className={classes[color]}>
+    <section className={classes[color]} id={id}>
       <Container maxWidth="xl">
         <Grid
           container

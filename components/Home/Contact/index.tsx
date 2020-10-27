@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Section title="Contato" color="secondary">
+    <Section title="Contato" color="secondary" id="contact">
       <form noValidate autoComplete="off" onSubmit={sendMessage}>
         <Grid container spacing={2} justify="space-between">
           <Grid item xs={12}>
