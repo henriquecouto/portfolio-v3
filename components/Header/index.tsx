@@ -10,8 +10,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { transparentize } from "polished";
-import Icon from "@iconify/react";
-import arrowUp from "@iconify/icons-jam/arrow-up";
 
 import ElevationScroll from "./ElevationScroll";
 import Button from "../Button";
@@ -98,6 +96,7 @@ const Header: React.FC = (props) => {
                       className={classes.drawerButton}
                       color="secondary"
                       variant="contained"
+                      onClick={handleClick("#back-to-top-anchor")}
                     >
                       Início
                     </Button>
@@ -106,6 +105,7 @@ const Header: React.FC = (props) => {
                       className={classes.drawerButton}
                       color="secondary"
                       variant="contained"
+                      onClick={handleClick("#portfolio")}
                     >
                       Portfólio
                     </Button>
@@ -114,6 +114,7 @@ const Header: React.FC = (props) => {
                       className={classes.drawerButton}
                       color="secondary"
                       variant="contained"
+                      onClick={handleClick("#skills")}
                     >
                       Habilidades
                     </Button>
@@ -122,10 +123,16 @@ const Header: React.FC = (props) => {
                       className={classes.drawerButton}
                       color="secondary"
                       variant="contained"
+                      onClick={handleClick("#contact")}
                     >
                       Contato
                     </Button>
-                    <Button fullWidth color="primary" variant="contained">
+                    <Button
+                      fullWidth
+                      color="primary"
+                      variant="contained"
+                      onClick={handleClick("#blog")}
+                    >
                       Blog
                     </Button>
                   </Drawer>
