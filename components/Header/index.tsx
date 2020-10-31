@@ -1,20 +1,14 @@
 import React from "react";
-import {
-  AppBar,
-  Box,
-  Container,
-  Fab,
-  Grid,
-  Hidden,
-  Toolbar,
-} from "@material-ui/core";
+import { AppBar, Box, Container, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { transparentize } from "polished";
 
 import ElevationScroll from "./ElevationScroll";
-import Button from "../Button";
-import Drawer from "./Drawer";
 import BackToTop from "./BackToTop";
+import VariantHome from "./VariantHome";
+import VariantContent from "./VariantContent";
+
+// const VariantContent;
 
 const appBarHeight = 100;
 
@@ -37,21 +31,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header: React.FC = (props) => {
+type Props = {
+  variant?: "content" | "home";
+  title?: string;
+  subtitle?: string;
+};
+
+const Header: React.FC<Props> = ({
+  variant = "home",
+  title,
+  subtitle,
+  ...props
+}) => {
   const classes = useStyles();
 
-  const handleClick = (selector: string) => (
-    event: React.MouseEvent<
-      HTMLDivElement & HTMLButtonElement & HTMLButtonElement
-    >
-  ) => {
-    const anchor = (
-      (event.target as HTMLDivElement).ownerDocument || document
-    ).querySelector(selector);
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+  const variants = {
+    home: <VariantHome appBarHeight={appBarHeight} />,
+    content: <VariantContent title={title} subtitle={subtitle} />,
   };
 
   return (
@@ -60,85 +56,7 @@ const Header: React.FC = (props) => {
       <ElevationScroll {...props}>
         <AppBar className={classes.appBar} position="sticky">
           <Toolbar className={classes.toolbar}>
-            <Container maxWidth="xl">
-              <Grid container alignItems="center" justify="space-between">
-                <img src="/logo.svg" />
-                <Hidden smDown>
-                  <div>
-                    <Button
-                      color="primary"
-                      onClick={handleClick("#back-to-top-anchor")}
-                    >
-                      Início
-                    </Button>
-                    <Button color="primary" onClick={handleClick("#portfolio")}>
-                      Portfólio
-                    </Button>
-                    <Button color="primary" onClick={handleClick("#skills")}>
-                      Habilidades
-                    </Button>
-                    <Button color="primary" onClick={handleClick("#contact")}>
-                      Contato
-                    </Button>
-                  </div>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={handleClick("#blog")}
-                  >
-                    Blog
-                  </Button>
-                </Hidden>
-                <Hidden mdUp>
-                  <Drawer appBarHeight={appBarHeight}>
-                    <Button
-                      fullWidth
-                      className={classes.drawerButton}
-                      color="secondary"
-                      variant="contained"
-                      onClick={handleClick("#back-to-top-anchor")}
-                    >
-                      Início
-                    </Button>
-                    <Button
-                      fullWidth
-                      className={classes.drawerButton}
-                      color="secondary"
-                      variant="contained"
-                      onClick={handleClick("#portfolio")}
-                    >
-                      Portfólio
-                    </Button>
-                    <Button
-                      fullWidth
-                      className={classes.drawerButton}
-                      color="secondary"
-                      variant="contained"
-                      onClick={handleClick("#skills")}
-                    >
-                      Habilidades
-                    </Button>
-                    <Button
-                      fullWidth
-                      className={classes.drawerButton}
-                      color="secondary"
-                      variant="contained"
-                      onClick={handleClick("#contact")}
-                    >
-                      Contato
-                    </Button>
-                    <Button
-                      fullWidth
-                      color="primary"
-                      variant="contained"
-                      onClick={handleClick("#blog")}
-                    >
-                      Blog
-                    </Button>
-                  </Drawer>
-                </Hidden>
-              </Grid>
-            </Container>
+            <Container maxWidth="xl">{variants[variant]}</Container>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
