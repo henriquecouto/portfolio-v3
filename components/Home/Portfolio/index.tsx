@@ -1,5 +1,6 @@
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { useRouter } from "next/router";
 import theme from "../../../styles/theme";
 import Work from "../../../types/Work";
 import Section from "../../Section";
@@ -38,6 +39,7 @@ type Props = {
 
 const Portfolio: React.FC<Props> = ({ works }) => {
   const classes = useStyles();
+  const router = useRouter();
   return (
     <Section title="Portfólio" color="primary" id="portfolio">
       <>
@@ -55,7 +57,11 @@ const Portfolio: React.FC<Props> = ({ works }) => {
         </Grid>
         <Grid container justify="flex-end">
           <Grid item>
-            <Button variant="outlined" color="secondary">
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => router.push("/portfolio")}
+            >
               Ver tudo
             </Button>
           </Grid>

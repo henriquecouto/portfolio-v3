@@ -4,6 +4,7 @@ import Contact from "../components/Home/Contact";
 import Portfolio from "../components/Home/Portfolio";
 import Skills from "../components/Home/Skills";
 import Top from "../components/Home/Top";
+import { LOCAL_URL } from "../contants/urls";
 
 export default function Home({ works, skills, lastPost }) {
   return (
@@ -18,17 +19,11 @@ export default function Home({ works, skills, lastPost }) {
 }
 
 Home.getInitialProps = async () => {
-  const works = await (
-    await fetch(process.env.LOCAL_URL + "/api/works")
-  ).json();
+  const works = await (await fetch(`${LOCAL_URL}/api/works`)).json();
 
-  const skills = await (
-    await fetch(process.env.LOCAL_URL + "/api/skills")
-  ).json();
+  const skills = await (await fetch(`${LOCAL_URL}/api/skills`)).json();
 
-  const lastPost = await (
-    await fetch(process.env.LOCAL_URL + "/api/blog")
-  ).json();
+  const lastPost = await (await fetch(`${LOCAL_URL}/api/blog`)).json();
 
   return { works, skills, lastPost };
 };
