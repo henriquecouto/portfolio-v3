@@ -14,12 +14,12 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "clsx": "^1.1.1",
     "mongodb": "^3.6.2",
-    "next": "9.5.3",
+    "next": "^10.0.0",
     "nodemailer": "^6.4.14",
     "notistack": "^1.0.1",
     "polished": "^3.6.7",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/mongodb": "^3.5.27",
