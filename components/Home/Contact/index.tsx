@@ -15,6 +15,7 @@ import linkedin from "@iconify/icons-jam/linkedin-square";
 import Section from "../../Section";
 import { FormEvent, useState } from "react";
 import { useSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme: Theme) => ({
   iconSocial: {
@@ -26,15 +27,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const SocialButton: React.FC<{ network: string; icon: object }> = ({
-  network,
-  icon,
-}) => {
+const SocialButton: React.FC<{
+  network: string;
+  icon: object;
+  url: string;
+}> = ({ network, icon, url }) => {
   const classes = useStyles();
+  const router = useRouter();
 
   return (
     <Tooltip title={network}>
-      <Fab color="primary" size="small" className={classes.buttonSocial}>
+      <Fab
+        color="primary"
+        size="small"
+        className={classes.buttonSocial}
+        onClick={() => window.open(url, "_blank")}
+      >
         <Icon icon={icon} className={classes.iconSocial} />
       </Fab>
     </Tooltip>
@@ -163,9 +171,21 @@ const Contact: React.FC = () => {
             />
           </Grid>
           <Grid item>
-            <SocialButton network="Github" icon={github} />
-            <SocialButton network="Linkedin" icon={linkedin} />
-            <SocialButton network="Instagram" icon={instagram} />
+            <SocialButton
+              network="Github"
+              icon={github}
+              url="https://github.com/henriquecouto"
+            />
+            <SocialButton
+              network="Linkedin"
+              icon={linkedin}
+              url="https://www.linkedin.com/in/henrique-couto-3287b1133/"
+            />
+            <SocialButton
+              network="Instagram"
+              icon={instagram}
+              url="https://instagram.com/couto.jpg"
+            />
           </Grid>
           <Grid item>
             <Button variant="contained" color="primary" type="submit">
