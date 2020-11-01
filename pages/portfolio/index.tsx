@@ -1,7 +1,41 @@
-import { Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 import Header from "../../components/Header";
+import PostItem from "../../components/PostItem";
+import { LOCAL_URL } from "../../contants/urls";
+import Work from "../../types/Work";
 
-export default function Portfolio() {
+const useStyles = makeStyles((theme: Theme) => ({
+  grid: {
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "row",
+    },
+  },
+}));
+
+const WorkList: React.FC<{ works: Array<Work> }> = ({ works }) => {
+  const classes = useStyles();
+
+  return (
+    <Container maxWidth="xl">
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        justify="center"
+        className={classes.grid}
+      >
+        {works.map((work) => (
+          <Grid item key={work.id}>
+            <PostItem post={work} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  );
+};
+
+export default function Portfolio({ works }) {
   return (
     <>
       <Header
@@ -9,8 +43,14 @@ export default function Portfolio() {
         title="Portfólio"
         subtitle="Aqui estão alguns dos meus trabalhos!"
       >
-        <Typography>Hello Portfolio with Header</Typography>
+        <WorkList works={works} />
       </Header>
     </>
   );
 }
+
+Portfolio.getInitialProps = async () => {
+  const works = await (await fetch(`${LOCAL_URL}/api/works`)).json();
+
+  return { works };
+};
