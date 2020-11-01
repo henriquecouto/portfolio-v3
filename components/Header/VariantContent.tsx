@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { Grid, IconButton, Tooltip, Typography } from "@material-ui/core";
 import Icon from "@iconify/react";
 import back from "@iconify/icons-jam/arrow-square-left";
+import getPreviousPath from "../../util/getPreviousPath";
 
 const BackButton: React.FC = () => {
   const router = useRouter();
+  const backTo = getPreviousPath(router.pathname);
 
   return (
     <Tooltip title="Voltar">
-      <IconButton color="primary" onClick={router.back}>
+      <IconButton color="primary" onClick={() => router.push(backTo)}>
         <Icon icon={back} width={28} height={28} />
       </IconButton>
     </Tooltip>
