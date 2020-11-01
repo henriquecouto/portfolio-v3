@@ -7,10 +7,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { db } = await connectToDatabase();
 
   const limit = Number(req.query.limit);
+  const title = req.query.title;
 
   const works: Array<Work> = await db
     .collection("works")
-    .find()
+    .find(title && { title })
     .limit(limit || 0)
     .toArray();
   res.status(200).json(works);

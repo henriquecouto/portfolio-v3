@@ -27,7 +27,7 @@ const WorkList: React.FC<{ works: Array<Work> }> = ({ works }) => {
       >
         {works.map((work) => (
           <Grid item key={work.id}>
-            <PostItem post={work} />
+            <PostItem post={work} from="portfolio" />
           </Grid>
         ))}
       </Grid>

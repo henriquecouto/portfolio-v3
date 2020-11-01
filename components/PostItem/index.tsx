@@ -3,10 +3,12 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Post from "../../types/Post";
 import Work from "../../types/Work";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     overflow: "hidden",
+    cursor: "pointer",
     [theme.breakpoints.down("sm")]: {
       width: 280,
     },
@@ -41,13 +43,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-type Props = { post: Post | Work; label?: string };
+type Props = {
+  post: Post | Work;
+  from: "blog" | "portfolio";
+  label?: string;
+};
 
-const PostItem: React.FC<Props> = ({ post, label }) => {
+const PostItem: React.FC<Props> = ({ post, label, from }) => {
   const classes = useStyles();
+  const router = useRouter();
 
   return (
-    <Paper className={classes.paper}>
+    <Paper
+      className={classes.paper}
+      onClick={() => router.push(`/${from}/${post.title}`)}
+    >
       <Grid container>
         <Grid item className={classes.cover}>
           <Image
