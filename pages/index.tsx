@@ -19,7 +19,7 @@ export default function Home({ works, skills, lastPost }) {
 }
 
 Home.getInitialProps = async () => {
-  const works = await (await fetch(`${LOCAL_URL}/api/works`)).json();
+  const works = await (await fetch(`${LOCAL_URL}/api/works?limit=3`)).json();
 
   const skills = await (await fetch(`${LOCAL_URL}/api/skills`)).json();
 
