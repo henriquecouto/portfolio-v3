@@ -1,5 +1,6 @@
 import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import Image from "next/image";
 import Post from "../../../types/Post";
 import Section from "../../Section";
 
@@ -47,7 +48,12 @@ const PostItem: React.FC<{ post: Post; label: string }> = ({ post, label }) => {
     <Paper className={classes.paper}>
       <Grid container>
         <Grid item className={classes.cover}>
-          <img src={post.cover} className={classes.img} />
+          <Image
+            src={post.cover}
+            className={classes.img}
+            width={280}
+            height={280}
+          />
         </Grid>
         <Grid item xs className={classes.details}>
           <Typography className={classes.label} variant="subtitle2">

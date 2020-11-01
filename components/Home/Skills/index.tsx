@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Skill from "../../../types/Skill";
@@ -45,7 +46,12 @@ const SkillItem: React.FC<{ skill: Skill; index?: number }> = ({
         direction={index ? (index % 2 == 0 ? "row" : "row-reverse") : "row"}
       >
         <Grid item className={classes.cover}>
-          <img src={skill.cover} className={classes.img} />
+          <Image
+            src={skill.cover}
+            className={classes.img}
+            width={280}
+            height={280}
+          />
         </Grid>
         <Grid item xs className={classes.details}>
           <Typography variant="h3">{skill.title}</Typography>

@@ -1,5 +1,6 @@
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import theme from "../../../styles/theme";
 import Work from "../../../types/Work";
@@ -51,7 +52,12 @@ const Portfolio: React.FC<Props> = ({ works }) => {
         >
           {works.map((work) => (
             <Grid item key={work.id}>
-              <img className={classes.work} src={work.cover} />
+              <Image
+                className={classes.work}
+                src={work.cover}
+                width={280}
+                height={280}
+              />
             </Grid>
           ))}
         </Grid>
