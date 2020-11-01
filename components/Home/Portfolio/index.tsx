@@ -8,10 +8,9 @@ import Section from "../../Section";
 
 const useStyles = makeStyles((theme: Theme) => ({
   worksList: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
-      marginBottom: theme.spacing(2),
     },
   },
   work: {
@@ -26,10 +25,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 
     [theme.breakpoints.down("md")]: {
-      margin: theme.spacing(1, 0),
       width: "100%",
       minWidth: 200,
       height: 200,
+    },
+  },
+  showMore: {
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
     },
   },
 }));
@@ -49,6 +52,7 @@ const Portfolio: React.FC<Props> = ({ works }) => {
           justify="space-between"
           alignItems="center"
           className={classes.worksList}
+          spacing={2}
         >
           {works.map((work) => (
             <Grid item key={work.id}>
@@ -61,7 +65,7 @@ const Portfolio: React.FC<Props> = ({ works }) => {
             </Grid>
           ))}
         </Grid>
-        <Grid container justify="flex-end">
+        <Grid container justify="flex-end" className={classes.showMore}>
           <Grid item>
             <Button
               variant="outlined"
