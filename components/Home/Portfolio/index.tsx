@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: theme.spacing(1),
     objectFit: "cover",
     transition: "0.5s",
+    cursor: "pointer",
 
     "&:hover": {
       transform: "scale(1.1, 1.1)",
@@ -57,6 +58,7 @@ const Portfolio: React.FC<Props> = ({ works }) => {
           {works.map((work) => (
             <Grid item key={work.id}>
               <Image
+                onClick={() => router.push(`/portfolio/${work.title}`)}
                 className={classes.work}
                 src={work.cover}
                 width={280}

@@ -1,5 +1,6 @@
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { useRouter } from "next/router";
 import Post from "../../../types/Post";
 import PostItem from "../../PostItem";
 import Section from "../../Section";
@@ -18,6 +19,7 @@ const useBlogStyles = makeStyles((theme: Theme) => ({
 
 const Blog: React.FC<Props> = ({ lastPost }) => {
   const classes = useBlogStyles();
+  const router = useRouter();
 
   return (
     <Section title="Blog" color="primary" id="blog">
@@ -29,10 +31,14 @@ const Blog: React.FC<Props> = ({ lastPost }) => {
         className={classes.grid}
       >
         <Grid item>
-          <PostItem label="Último post" post={lastPost} />
+          <PostItem label="Último post" post={lastPost} from="blog" />
         </Grid>
         <Grid item>
-          <Button variant="outlined" color="secondary">
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => router.push("/blog")}
+          >
             Ver tudo
           </Button>
         </Grid>

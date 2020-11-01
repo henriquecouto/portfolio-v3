@@ -23,7 +23,7 @@ Home.getInitialProps = async () => {
 
   const skills = await (await fetch(`${LOCAL_URL}/api/skills`)).json();
 
-  const lastPost = await (await fetch(`${LOCAL_URL}/api/blog`)).json();
+  const lastPost = (await (await fetch(`${LOCAL_URL}/api/blog`)).json())[0];
 
   return { works, skills, lastPost };
 };
