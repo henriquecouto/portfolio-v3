@@ -2,6 +2,7 @@
 
 /public/portfolio**
 /public/blog**
+/public/skills**
 
 # dependencies
 /node_modules
