@@ -15,6 +15,11 @@ const useBlogStyles = makeStyles((theme: Theme) => ({
       alignItems: "center",
     },
   },
+  item: {
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+  },
 }));
 
 const Blog: React.FC<Props> = ({ lastPost }) => {
@@ -30,7 +35,7 @@ const Blog: React.FC<Props> = ({ lastPost }) => {
         spacing={2}
         className={classes.grid}
       >
-        <Grid item>
+        <Grid item className={classes.item}>
           <PostItem label="Último post" post={lastPost} from="blog" />
         </Grid>
         <Grid item>
