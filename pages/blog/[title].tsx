@@ -6,6 +6,7 @@ import { LOCAL_URL } from "../../contants/urls";
 import ReactMarkdown from "react-markdown/with-html";
 import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
+import Head from "next/head";
 
 const useStyles = makeStyles((theme: Theme) => ({
   markdown: {
@@ -20,17 +21,24 @@ export default function PostDetails({ post, file }) {
   const classes = useStyles();
 
   return (
-    <Header title={title as string} variant="content">
-      <Container maxWidth="lg">
-        <ReactMarkdown
-          className={classes.markdown}
-          escapeHtml={false}
-          source={file}
-          plugins={[toc]}
-          renderers={{ code: CodeBlock }}
-        />
-      </Container>
-    </Header>
+    <>
+      <Head>
+        <title>
+          {title} - Blog - Henrique Couto | Desenvolvedor Web e Mobile
+        </title>
+      </Head>
+      <Header title={title as string} variant="content">
+        <Container maxWidth="lg">
+          <ReactMarkdown
+            className={classes.markdown}
+            escapeHtml={false}
+            source={file}
+            plugins={[toc]}
+            renderers={{ code: CodeBlock }}
+          />
+        </Container>
+      </Header>
+    </>
   );
 }
 

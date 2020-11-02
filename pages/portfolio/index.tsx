@@ -1,5 +1,6 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import Head from "next/head";
 import Header from "../../components/Header";
 import PostItem from "../../components/PostItem";
 import { LOCAL_URL } from "../../contants/urls";
@@ -38,6 +39,9 @@ const WorkList: React.FC<{ works: Array<Work> }> = ({ works }) => {
 export default function Portfolio({ works }) {
   return (
     <>
+      <Head>
+        <title>Portfólio - Henrique Couto | Desenvolvedor Web e Mobile</title>
+      </Head>
       <Header
         variant="content"
         title="Portfólio"

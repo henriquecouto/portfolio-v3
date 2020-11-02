@@ -6,7 +6,7 @@ import theme from "../styles/theme";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="pt-BR">
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link href="/fonts/BebasNeue/stylesheet.css" rel="stylesheet" />

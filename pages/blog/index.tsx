@@ -1,5 +1,6 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import Head from "next/head";
 import Header from "../../components/Header";
 import PostItem from "../../components/PostItem";
 import { LOCAL_URL } from "../../contants/urls";
@@ -38,6 +39,9 @@ const PostList: React.FC<{ posts: Array<Post> }> = ({ posts }) => {
 export default function Blog({ posts }) {
   return (
     <>
+      <Head>
+        <title>Blog - Henrique Couto | Desenvolvedor Web e Mobile</title>
+      </Head>
       <Header
         variant="content"
         title="Blog"
