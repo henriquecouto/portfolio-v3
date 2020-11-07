@@ -24,6 +24,15 @@ export default function MyApp(props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <meta
+          name="description"
+          content="Sou desenvolvedor Web e Mobile e fiz esse site com o intuito de postar alguns conteúdos legais sobre o mundo da programação."
+        />
+        <meta
+          name="keywords"
+          content="HTML, CSS, JavaScript, React, Node, NodeJS, Typescript, React Native, Frontend, Backend"
+        />
+        <meta name="author" content="Henrique Couto" />
       </Head>
       <ThemeProvider theme={theme}>
         <SnackbarProvider maxSnack={3}>

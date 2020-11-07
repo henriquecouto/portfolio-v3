@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown/with-html";
 import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
 import Head from "next/head";
+import Work from "../../types/Work";
 
 const useStyles = makeStyles((theme: Theme) => ({
   markdown: {
@@ -14,7 +15,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function WorkDetails({ work, file }) {
+export default function WorkDetails({
+  work,
+  file,
+}: {
+  work: Work;
+  file: string;
+}) {
   const router = useRouter();
   const { title } = router.query;
 
@@ -26,6 +33,7 @@ export default function WorkDetails({ work, file }) {
         <title>
           {title} - Portfólio - Henrique Couto | Desenvolvedor Web e Mobile
         </title>
+        <meta name="description" content={work.desc} />
       </Head>
       <Header title={title as string} variant="content">
         <Container maxWidth="lg">

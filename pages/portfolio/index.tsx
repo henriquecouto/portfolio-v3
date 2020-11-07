@@ -40,6 +40,10 @@ export default function Portfolio({ works }) {
   return (
     <>
       <Head>
+        <meta
+          name="description"
+          content="Me conheça um pouco melhor através de alguns dos meus trabalhos!"
+        />
         <title>Portfólio - Henrique Couto | Desenvolvedor Web e Mobile</title>
       </Head>
       <Header
