@@ -56,7 +56,7 @@ const PostItem: React.FC<Props> = ({ post, label, from }) => {
   return (
     <Paper
       className={classes.paper}
-      onClick={() => router.push(`/${from}/${post.title}`)}
+      onClick={() => router.push(`/${from}/${post.slug}`)}
     >
       <Grid container>
         <Grid item className={classes.cover}>

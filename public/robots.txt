@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /*
+Disallow: /api/*
+
+Host: https://henriquecouto.com.br
+Sitemap: https://henriquecouto.com.br/sitemap.xml

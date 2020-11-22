@@ -58,7 +58,7 @@ const Portfolio: React.FC<Props> = ({ works }) => {
           {works.map((work) => (
             <Grid item key={work.id}>
               <Image
-                onClick={() => router.push(`/portfolio/${work.title}`)}
+                onClick={() => router.push(`/portfolio/${work.slug}`)}
                 className={classes.work}
                 src={work.cover}
                 width={280}

@@ -1,6 +1,5 @@
 import { Container } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import { LOCAL_URL } from "../../contants/urls";
 import ReactMarkdown from "react-markdown/with-html";
@@ -8,6 +7,7 @@ import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
 import Head from "next/head";
 import Work from "../../types/Work";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   markdown: {
@@ -22,20 +22,17 @@ export default function WorkDetails({
   work: Work;
   file: string;
 }) {
-  const router = useRouter();
-  const { title } = router.query;
-
   const classes = useStyles();
 
   return (
     <>
       <Head>
         <title>
-          {title} - Portfólio - Henrique Couto | Desenvolvedor Web e Mobile
+          {work.title} - Portfólio - Henrique Couto | Desenvolvedor Web e Mobile
         </title>
         <meta name="description" content={work.desc} />
       </Head>
-      <Header title={title as string} variant="content">
+      <Header title={work.title} variant="content">
         <Container maxWidth="lg">
           <ReactMarkdown
             className={classes.markdown}
@@ -50,12 +47,28 @@ export default function WorkDetails({
   );
 }
 
-WorkDetails.getInitialProps = async ({ query }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const works = await (
-    await fetch(`${LOCAL_URL}/api/works?title=${query.title}`)
+    await fetch(`${LOCAL_URL}/api/works?slug=${params.slug}`)
   ).json();
 
   const file = await (await fetch(LOCAL_URL + works[0].content)).text();
 
-  return { work: works[0], file };
+  return { props: { work: works[0], file } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const works: Array<Work> = await (
+    await fetch(`${LOCAL_URL}/api/works`)
+  ).json();
+
+  const paths = works.map((work) => {
+    return {
+      params: {
+        slug: work.slug,
+      },
+    };
+  });
+
+  return { paths, fallback: false };
 };

@@ -1,6 +1,5 @@
 import { Container } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import { LOCAL_URL } from "../../contants/urls";
 import ReactMarkdown from "react-markdown/with-html";
@@ -8,6 +7,7 @@ import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
 import Head from "next/head";
 import Post from "../../types/Post";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   markdown: {
@@ -22,20 +22,17 @@ export default function PostDetails({
   post: Post;
   file: string;
 }) {
-  const router = useRouter();
-  const { title } = router.query;
-
   const classes = useStyles();
 
   return (
     <>
       <Head>
         <title>
-          {title} - Blog - Henrique Couto | Desenvolvedor Web e Mobile
+          {post.title} - Blog - Henrique Couto | Desenvolvedor Web e Mobile
           <meta name="description" content={post.desc} />
         </title>
       </Head>
-      <Header title={title as string} variant="content">
+      <Header title={post.title} variant="content">
         <Container maxWidth="lg">
           <ReactMarkdown
             className={classes.markdown}
@@ -50,12 +47,28 @@ export default function PostDetails({
   );
 }
 
-PostDetails.getInitialProps = async ({ query }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = await (
-    await fetch(`${LOCAL_URL}/api/blog?title=${query.title}`)
+    await fetch(`${LOCAL_URL}/api/blog?slug=${params.slug}`)
   ).json();
 
   const file = await (await fetch(LOCAL_URL + posts[0].content)).text();
 
-  return { post: posts[0], file };
+  return { props: { post: posts[0], file } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts: Array<Post> = await (
+    await fetch(`${LOCAL_URL}/api/blog`)
+  ).json();
+
+  const paths = posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+    };
+  });
+
+  return { paths, fallback: false };
 };

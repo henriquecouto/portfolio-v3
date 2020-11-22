@@ -4,6 +4,7 @@ type Post = {
   desc: string;
   cover: string;
   content: string;
+  slug: string;
 };
 
 export default Post;
