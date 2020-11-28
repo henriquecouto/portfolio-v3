@@ -1,7 +1,7 @@
 import { Container } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Header from "../../components/Header";
-import { LOCAL_URL } from "../../contants/urls";
+import { STATIC_URL } from "../../contants/urls";
 import ReactMarkdown from "react-markdown/with-html";
 import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
@@ -47,10 +47,28 @@ export default function WorkDetails({
   );
 }
 
-WorkDetails.getInitialProps = async ({ query }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const works = await (
-    await fetch(`${LOCAL_URL}/api/works?slug=${query.slug}`)
+    await fetch(`${STATIC_URL}/api/works?slug=${params.slug}`)
   ).json();
-  const file = await (await fetch(LOCAL_URL + works[0].content)).text();
-  return { work: works[0], file };
+
+  const file = await (await fetch(STATIC_URL + works[0].content)).text();
+
+  return { props: { work: works[0], file } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const works: Array<Work> = await (
+    await fetch(`${STATIC_URL}/api/works`)
+  ).json();
+
+  const paths = works.map((work) => {
+    return {
+      params: {
+        slug: work.slug,
+      },
+    };
+  });
+
+  return { paths, fallback: false };
 };

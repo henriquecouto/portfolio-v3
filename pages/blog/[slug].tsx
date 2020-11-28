@@ -1,7 +1,7 @@
 import { Container } from "@material-ui/core";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Header from "../../components/Header";
-import { LOCAL_URL } from "../../contants/urls";
+import { STATIC_URL } from "../../contants/urls";
 import ReactMarkdown from "react-markdown/with-html";
 import toc from "remark-toc";
 import CodeBlock from "../../components/CodeBlock";
@@ -47,10 +47,28 @@ export default function PostDetails({
   );
 }
 
-PostDetails.getInitialProps = async ({ query }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = await (
-    await fetch(`${LOCAL_URL}/api/blog?slug=${query.slug}`)
+    await fetch(`${STATIC_URL}/api/blog?slug=${params.slug}`)
   ).json();
-  const file = await (await fetch(LOCAL_URL + posts[0].content)).text();
-  return { post: posts[0], file };
+
+  const file = await (await fetch(STATIC_URL + posts[0].content)).text();
+
+  return { props: { post: posts[0], file } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts: Array<Post> = await (
+    await fetch(`${STATIC_URL}/api/blog`)
+  ).json();
+
+  const paths = posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+    };
+  });
+
+  return { paths, fallback: false };
 };
